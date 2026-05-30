@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Folio & Co. — Curated Bookstore</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="scroll-progress" id="scrollBar"></div>
+
+<!-- CART OVERLAY + DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3>Your Shelf</h3>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty" id="cartEmpty">
+      <div class="cart-empty-icon">📚</div>
+      <p>Your shelf is empty.<br>Start exploring.</p>
+    </div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total-amount" id="cartTotal">$0.00</span>
+    </div>
+    <button class="cart-checkout" onclick="showToast('Checkout coming soon!')">Proceed to Checkout →</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-dot"></div>
+  <span id="toastMsg">Added to shelf!</span>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Folio<span>&</span>Co.</a>
+  <ul class="nav-links">
+    <li><a href="#new">New Arrivals</a></li>
+    <li><a href="#categories">Categories</a></li>
+    <li><a href="#deals">Deals</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="nav-icon" onclick="showToast('Search coming soon!')">🔍</button>
+    <button class="nav-icon" onclick="openCart()">
+      🛒<span class="cart-badge" id="cartCount">0</span>
+    </button>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#new" onclick="toggleMenu()">New Arrivals</a>
+  <a href="#categories" onclick="toggleMenu()">Categories</a>
+  <a href="#deals" onclick="toggleMenu()">Deals</a>
+  <a href="#reviews" onclick="toggleMenu()">Reviews</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-text">
+    <div class="hero-eyebrow">Spring 2025 Collection</div>
+    <h1 class="hero-title">Books That<br><em>Move</em> the Soul</h1>
+    <p class="hero-desc">Curated reads from independent authors and beloved classics. Discover your next favourite story, one page at a time.</p>
+    <div class="hero-cta">
+      <a href="#new" class="btn-primary">Browse Collection</a>
+      <a href="#deals" class="btn-outline">Today's Deals</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="books-stack">
+      <div class="book-card b1">
+        <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=300&h=420&fit=crop" alt="Book">
+      </div>
+      <div class="book-card b2">
+        <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=300&h=420&fit=crop" alt="Book">
+      </div>
+      <div class="book-card b3">
+        <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=300&h=420&fit=crop" alt="Book">
+      </div>
+    </div>
+    <div class="hero-badge">Free<br>Shipping<br>Over $40</div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track" id="ticker">
+    <span class="ticker-item">Free shipping over $40</span>
+    <span class="ticker-item">10,000+ titles in stock</span>
+    <span class="ticker-item">New arrivals every week</span>
+    <span class="ticker-item">Gift wrapping available</span>
+    <span class="ticker-item">Easy 30-day returns</span>
+    <span class="ticker-item">Member discounts up to 30%</span>
+    <span class="ticker-item">Free shipping over $40</span>
+    <span class="ticker-item">10,000+ titles in stock</span>
+    <span class="ticker-item">New arrivals every week</span>
+    <span class="ticker-item">Gift wrapping available</span>
+    <span class="ticker-item">Easy 30-day returns</span>
+    <span class="ticker-item">Member discounts up to 30%</span>
+  </div>
+</div>
+
+<!-- NEW ARRIVALS -->
+<section id="new">
+  <div class="section-header">
+    <div>
+      <div class="section-label">Just in</div>
+      <h2 class="section-title">New Arrivals</h2>
+    </div>
+    <a href="#" class="section-link" onclick="showToast('View all coming soon!')">
+      View all
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+  <div class="books-grid" id="booksGrid"></div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories" id="categories">
+  <div class="section-header">
+    <div>
+      <div class="section-label">Explore</div>
+      <h2 class="section-title">Browse by Genre</h2>
+    </div>
+  </div>
+  <div class="cats-grid" id="catsGrid"></div>
+</section>
+
+<!-- FEATURED -->
+<section class="featured" style="padding: 0;">
+  <div class="featured-text">
+    <div class="featured-label">Editor's Pick</div>
+    <h2 class="featured-title">The Midnight<br>Library</h2>
+    <p class="featured-author">Matt Haig</p>
+    <p class="featured-desc">Between life and death there is a library. A place filled with the books of your life — and the choices you never made.</p>
+    <div class="featured-meta">
+      <div class="featured-meta-item">
+        <div class="meta-num">4.8</div>
+        <div class="meta-label">Rating</div>
+      </div>
+      <div class="featured-meta-item">
+        <div class="meta-num">2.4M</div>
+        <div class="meta-label">Readers</div>
+      </div>
+      <div class="featured-meta-item">
+        <div class="meta-num">#1</div>
+        <div class="meta-label">Bestseller</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap">
+      <button class="btn-primary" onclick="addToCart('The Midnight Library','Matt Haig',16.99,'https://images.unsplash.com/photo-1531072901881-d644216d4bf9?w=200&h=280&fit=crop')">Add to Shelf — $16.99</button>
+    </div>
+  </div>
+  <div class="featured-visual">
+    <div class="featured-book">
+      <img src="https://images.unsplash.com/photo-1531072901881-d644216d4bf9?w=400&h=560&fit=crop" alt="The Midnight Library">
+    </div>
+  </div>
+</section>
+
+<!-- DEALS -->
+<section class="deals" id="deals">
+  <div class="section-header">
+    <div>
+      <div class="section-label">Limited time</div>
+      <h2 class="section-title">Today's Deals</h2>
+    </div>
+  </div>
+  <div class="deals-row" id="dealsGrid"></div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="reviews">
+  <div class="section-header">
+    <div>
+      <div class="section-label">From our readers</div>
+      <h2 class="section-title">What People Say</h2>
+    </div>
+  </div>
+  <div class="reviews-grid" id="reviewsGrid"></div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="newsletter-label">Stay in the loop</div>
+  <h2 class="newsletter-title">Join the Reading Circle</h2>
+  <p class="newsletter-desc">Weekly recommendations, exclusive deals, and author interviews delivered to your inbox.</p>
+  <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+    <input type="email" class="newsletter-input" placeholder="your@email.com" required>
+    <button type="submit" class="newsletter-btn">Subscribe</button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <span class="footer-logo">Folio<span>&</span>Co.</span>
+      <p class="footer-desc">A curated bookstore celebrating stories, ideas, and the readers who love them.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-link" aria-label="Instagram">📷</a>
+        <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+        <a href="#" class="social-link" aria-label="Facebook">📘</a>
+        <a href="#" class="social-link" aria-label="Pinterest">📌</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Bestsellers</a></li>
+        <li><a href="#">Staff Picks</a></li>
+        <li><a href="#">Gift Cards</a></li>
+        <li><a href="#">Sale</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">My Account</a></li>
+        <li><a href="#">Order Status</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>About</h4>
+      <ul>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Wholesale</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Folio & Co. All rights reserved.</span>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
