@@ -2,7 +2,7 @@
 
 # 📖 Online Book Store Website
 
-A modern, responsive, and user-friendly online bookstore website built using HTML, CSS, and JavaScript. This project provides an attractive platform for users to explore books, discover best sellers, view special offers, and enjoy a smooth online shopping experience. Inspired by professional bookstore platforms and modern e-commerce UI designs. ([rhythmonline.lk][1])
+A modern, responsive, and user-friendly online bookstore website built using HTML, CSS, and JavaScript. This project provides an attractive platform for users to explore books, discover best sellers, view special offers, and enjoy a smooth online shopping experience. Inspired by professional bookstore platforms and modern e-commerce UI designs. 
 
 ## 🌐 Live Demo
 
