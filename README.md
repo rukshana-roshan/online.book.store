@@ -7,11 +7,9 @@ A modern, responsive, and user-friendly online bookstore website built using HTM
 ## 🌐 Live Demo
 
 🚀 **View Website:**
-[Online Book Store Live Demo](https://rukshana-roshan.github.io/online.book.store/?utm_source=chatgpt.com)
+[Online Book Store Live Demo] https://rukshana-roshan.github.io/online.book.store/
 
-## 📸 Preview
 
-![Online Book Store Preview](assets/images/preview.png)
 
 ---
 
